@@ -1,3 +1,18 @@
+language: objective-c
+osx_image: xcode7.2
+before_install:
+  # Install appium
+  - sudo npm install -g appium --chromedriver_version="2.16"
+  - appium > /dev/null 2>&1 &
+  # Setup android
+  - ./src/test/resources/setupAndroid.sh
+  # Install chromedriver
+  - wget -N http://chromedriver.storage.googleapis.com/2.11/chromedriver_linux64.zip
+before_script:
+  - source ~/.android-sdk-installer/env
+script:
+  - source ~/.android-sdk-installer/env
+
 language: java
 before_install:
   - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
