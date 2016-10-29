@@ -1,5 +1,7 @@
 language: objective-c
+
 osx_image: xcode7.2
+
 before_install:
   # Install appium
   - sudo npm install -g appium --chromedriver_version="2.16"
@@ -14,19 +16,14 @@ before_install:
   - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS --accept=$LICENSES
   - source ~/.android-sdk-installer/env
   - android list targets
-  # Create and start emulator
-  - echo no | android create avd --force -n android-23 -t android-23 --abi armeabi-v7a
-  - emulator -avd android-23 &
-  - adb wait-for-device
-  - adb shell input keyevent 82 &
-
-language: java
 
 before_script:
-  - source ~/.android-sdk-installer/env
+  # Create and start emulator
+  - ./src/test/resources/startAndroid.sh
+
 script:
   - source ~/.android-sdk-installer/env
-  - gradle clean test integrationTests browserTests
+  - ./gradlew clean test integrationTests browserTests
 
 cache:
   directories:

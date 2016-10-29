@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo ""
 echo "# Executing https://raw.github.com/embarkmobile/android-sdk-installer"
 echo ""
